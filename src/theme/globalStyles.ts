@@ -4,6 +4,7 @@ export const globalStyles: ChakraTheme['styles'] = {
   global: {
     'body, html, #__next': {
       height: '100%',
+      backgroundColor: 'var(--chakra-colors-brand-gray-600)',
     },
     '::-webkit-scrollbar': {
       width: '6px',

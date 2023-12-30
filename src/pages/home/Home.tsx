@@ -34,16 +34,18 @@ const tabs = [
 const Home: FC = () => {
   return (
     <Box height={{ base: '100%', md: '100vh' }}>
-      <Tabs isFitted variant='primary' height='100%'>
+      <Tabs isFitted variant='primary' height='100%' width='100%'>
         <TabList
           flexDirection={{ base: 'row', md: 'column' }}
           float={{ md: 'left' }}
           height={{ md: '100%' }}
-          paddingRight={{ md: '20px' }}
+          // paddingRight={{ md: '20px' }}
           sx={{
             '@media (max-width: 768px)': {
               position: 'fixed',
               bottom: 0,
+              left: 0,
+              right: 0,
               width: '100%',
               height: '100px',
             },
@@ -57,11 +59,9 @@ const Home: FC = () => {
           ))}
         </TabList>
 
-        <TabPanels>
+        <TabPanels marginLeft={{ md: '100px' }}>
           {tabs.map(({ title, content }) => (
-            <Box padding={10}>
-              <TabPanel key={title}>{content}</TabPanel>
-            </Box>
+            <TabPanel key={title}>{content}</TabPanel>
           ))}
         </TabPanels>
       </Tabs>

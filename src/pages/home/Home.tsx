@@ -1,6 +1,7 @@
 import { Box, Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { FC } from 'react';
 import { HomeIcon, HeartIcon, CartIcon, ChartIcon, ProfileIcon } from '../../components/Icon';
+import { OrderNow } from '../../features';
 
 const tabStyle = {
   '@media (max-width: 480px)': {
@@ -18,7 +19,7 @@ const tabStyle = {
 };
 
 const tabs = [
-  { title: 'Home', icon: HomeIcon, styles: {}, content: <p>Home</p> },
+  { title: 'Home', icon: HomeIcon, styles: {}, content: <OrderNow /> },
   { title: 'Favorites', icon: HeartIcon, styles: {}, content: <p>Favorites</p> },
   {
     title: 'Cart',
@@ -38,6 +39,7 @@ const Home: FC = () => {
           flexDirection={{ base: 'row', md: 'column' }}
           float={{ md: 'left' }}
           height={{ md: '100%' }}
+          paddingRight={{ md: '20px' }}
           sx={{
             '@media (max-width: 768px)': {
               position: 'fixed',
@@ -57,7 +59,9 @@ const Home: FC = () => {
 
         <TabPanels>
           {tabs.map(({ title, content }) => (
-            <TabPanel key={title}>{content}</TabPanel>
+            <Box padding={10}>
+              <TabPanel key={title}>{content}</TabPanel>
+            </Box>
           ))}
         </TabPanels>
       </Tabs>

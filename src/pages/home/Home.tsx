@@ -39,7 +39,9 @@ const Home: FC = () => {
           flexDirection={{ base: 'row', md: 'column' }}
           float={{ md: 'left' }}
           height={{ md: '100%' }}
-          // paddingRight={{ md: '20px' }}
+          zIndex={100}
+          background='brand.gray.600'
+          position='fixed'
           sx={{
             '@media (max-width: 768px)': {
               position: 'fixed',
@@ -59,7 +61,7 @@ const Home: FC = () => {
           ))}
         </TabList>
 
-        <TabPanels marginLeft={{ md: '100px' }}>
+        <TabPanels marginLeft={{ md: '100px' }} marginBottom='100px' maxWidth='900px'>
           {tabs.map(({ title, content }) => (
             <TabPanel key={title}>{content}</TabPanel>
           ))}

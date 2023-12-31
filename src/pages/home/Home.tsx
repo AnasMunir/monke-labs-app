@@ -1,7 +1,7 @@
 import { Box, Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { FC } from 'react';
 import { HomeIcon, HeartIcon, CartIcon, ChartIcon, ProfileIcon } from '../../components/Icon';
-import { OrderNow } from '../../features';
+import { Cart, OrderNow } from '../../features';
 
 const tabStyle = {
   '@media (max-width: 480px)': {
@@ -25,7 +25,7 @@ const tabs = [
     title: 'Cart',
     icon: CartIcon,
     styles: { background: 'black', borderRadius: '50%', padding: '16px' },
-    content: <p>Cart</p>,
+    content: <Cart />,
   },
   { title: 'Chart', icon: ChartIcon, styles: {}, content: <p>Chart</p> },
   { title: 'Profile', icon: ProfileIcon, styles: {}, content: <p>Profile</p> },

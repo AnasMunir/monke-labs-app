@@ -25,15 +25,6 @@ const CartItem: FC = () => {
             </Box>
           </Flex>
         </CardBody>
-
-        {/* <CardFooter>
-          <Flex justifyContent='space-between'>
-            <Text color='brand.gray.400'>Quantity 1</Text>
-            <Box>
-              <Price price={75.81} />
-            </Box>
-          </Flex>
-        </CardFooter> */}
       </Flex>
     </Card>
   );

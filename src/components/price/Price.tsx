@@ -1,4 +1,4 @@
-import { Flex, HStack, Text, TextProps } from '@chakra-ui/react';
+import { Flex, Text, TextProps } from '@chakra-ui/react';
 import { FC } from 'react';
 
 interface IPrice extends TextProps {

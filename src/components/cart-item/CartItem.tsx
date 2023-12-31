@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, Card, CardBody, CardFooter, Flex, Image, Stack, Text } from '@chakra-ui/react';
+import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react';
 import ProductImage from '../../assets/Rectangle-6.png';
 import Price from '../price/Price';
 

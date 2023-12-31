@@ -1,11 +1,13 @@
 import { FC } from 'react';
 import ProductItem from '../../components/product-item/ProductItem';
-import { Box, HStack, SimpleGrid, Text, VStack } from '@chakra-ui/react';
+import { Box, HStack, SimpleGrid, Text, VStack, useDisclosure } from '@chakra-ui/react';
 import CategoryItem from '../../components/category-item/CategoryItem';
 import { SearchIcon } from '../../components/Icon';
 import Section from '../../components/section/Section';
+import Product from '../../components/product/Product';
 
 const OrderNow: FC = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <HStack marginBottom='50px' justifyContent={{ base: 'space-between', md: 'start' }}>
@@ -41,12 +43,13 @@ const OrderNow: FC = () => {
           spacing='20px'
           justifyItems='center'>
           {[...Array(12)].map((_, index) => (
-            <Box width={{ base: '172px', md: '200px' }}>
+            <Box width={{ base: '172px', md: '200px' }} onClick={onOpen}>
               <ProductItem key={index} />
             </Box>
           ))}
         </SimpleGrid>
       </Section>
+      <Product isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

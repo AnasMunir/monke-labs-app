@@ -12,10 +12,10 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { BackArrowIcon, HeartIcon } from '../Icon';
+import { BackArrowIcon, HeartIcon } from '../../components/Icon';
 import ProductOne from '../../assets/product-1.png';
-import Quantity from '../quantity/Quantity';
-import { MobileActionFooter } from '..';
+import Quantity from '../../components/quantity/Quantity';
+import { MobileActionFooter } from '../../components';
 
 const Product: FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   return (

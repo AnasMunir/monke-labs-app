@@ -4,7 +4,7 @@ import { Box, HStack, SimpleGrid, Text, VStack, useDisclosure } from '@chakra-ui
 import CategoryItem from '../../components/category-item/CategoryItem';
 import { SearchIcon } from '../../components/Icon';
 import Section from '../../components/section/Section';
-import Product from '../../components/product/Product';
+import { Product } from '..';
 
 const OrderNow: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

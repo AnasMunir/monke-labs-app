@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
 import { DesktopActionFooter, MobileActionFooter, PaymentOptions } from '../../components';
-import { Box, BoxProps, Flex, Heading, SimpleGrid, Stack, Text } from '@chakra-ui/react';
+import { Box, BoxProps, Flex, Heading, SimpleGrid, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { useMediaLayout } from 'use-media';
+import { OrderComplete } from '../../features';
 
 interface ISection extends BoxProps {
   heading: string;
@@ -19,6 +20,7 @@ const Section: FC<PropsWithChildren<ISection>> = ({ heading, children, ...props 
 };
 
 const Checkout: FC = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useMediaLayout({ maxWidth: '768px' });
   return (
     <>
@@ -56,10 +58,11 @@ const Checkout: FC = () => {
               ))}
             </SimpleGrid>
           </Section>
-          {!isMobile && <DesktopActionFooter buttonText='Pay Now' />}
+          {!isMobile && <DesktopActionFooter buttonText='Pay Now' onClick={onOpen} />}
         </Stack>
       </Flex>
-      {isMobile && <MobileActionFooter price={133.03} text='total' buttonText='Pay Now' />}
+      {isMobile && <MobileActionFooter price={133.03} text='total' buttonText='Pay Now' onClick={onOpen} />}
+      <OrderComplete isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

@@ -1,7 +1,5 @@
 import {
   Box,
-  Button,
-  Flex,
   HStack,
   Image,
   Modal,
@@ -16,8 +14,8 @@ import {
 import { FC } from 'react';
 import { BackArrowIcon, HeartIcon } from '../Icon';
 import ProductOne from '../../assets/product-1.png';
-import Price from '../price/Price';
 import Quantity from '../quantity/Quantity';
+import { MobileActionFooter } from '..';
 
 const Product: FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   return (
@@ -60,13 +58,7 @@ const Product: FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose
         </ModalBody>
 
         <ModalFooter>
-          <Flex justifyContent='space-between' alignItems='end' width='100%'>
-            <VStack spacing={0} alignItems='start'>
-              <Text fontSize='18px'>Price</Text>
-              <Price price={25.27} fontSize='30px' reverse={true} />
-            </VStack>
-            <Button onClick={onClose}>Add to cart</Button>
-          </Flex>
+          <MobileActionFooter price={25.27} text='Price' buttonText='Add to cart' onClick={onClose} />
         </ModalFooter>
       </ModalContent>
     </Modal>

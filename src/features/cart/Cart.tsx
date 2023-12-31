@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Flex, HStack, Heading, Text, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
-import { CartItem } from '../../components';
+import { CartItem, MobileActionFooter } from '../../components';
 import Price from '../../components/price/Price';
 import { useMediaLayout } from 'use-media';
 
@@ -21,13 +21,7 @@ const Cart: FC = () => {
           ))}
         </Flex>
         {isMobile ? (
-          <Flex flexDirection='row' justifyContent='space-between' alignItems='end' padding='10px'>
-            <VStack spacing={0} alignItems='start'>
-              <Text fontSize='18px'>Total</Text>
-              <Price price={25.27} fontSize='30px' reverse={true} />
-            </VStack>
-            <Button>Checkout</Button>
-          </Flex>
+          <MobileActionFooter price={25.27} text='Total' buttonText='Checkout' />
         ) : (
           <Flex flexDirection='column' alignItems='end' marginLeft='auto' padding='10px' width='100%'>
             <HStack width='100%' justifyContent='space-between' alignItems='center' marginY='15px'>

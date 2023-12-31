@@ -1,11 +1,12 @@
-import { Box, Button, Divider, Flex, HStack, Heading, Text, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
-import { CartItem, MobileActionFooter } from '../../components';
-import Price from '../../components/price/Price';
+import { Box, Flex, Heading } from '@chakra-ui/react';
+import { CartItem, DesktopActionFooter, MobileActionFooter } from '../../components';
 import { useMediaLayout } from 'use-media';
+import { useNavigate } from 'react-router-dom';
 
 const Cart: FC = () => {
   const isMobile = useMediaLayout({ maxWidth: '768px' });
+  const navigate = useNavigate();
 
   return (
     <>
@@ -21,18 +22,21 @@ const Cart: FC = () => {
           ))}
         </Flex>
         {isMobile ? (
-          <MobileActionFooter price={25.27} text='Total' buttonText='Checkout' />
+          <MobileActionFooter
+            price={25.27}
+            text='Total'
+            buttonText='Checkout'
+            onClick={() => {
+              navigate('/checkout');
+            }}
+          />
         ) : (
-          <Flex flexDirection='column' alignItems='end' marginLeft='auto' padding='10px' width='100%'>
-            <HStack width='100%' justifyContent='space-between' alignItems='center' marginY='15px'>
-              <Text fontSize='18px'>Total</Text>
-              <Price price={25.27} fontSize='18px' reverse={true} />
-            </HStack>
-            <Divider opacity={1} borderBottomWidth='3px' />
-            <Button width='100%' marginY='15px'>
-              Checkout
-            </Button>
-          </Flex>
+          <DesktopActionFooter
+            buttonText='Checkout'
+            onClick={() => {
+              navigate('/checkout');
+            }}
+          />
         )}
       </Flex>
     </>

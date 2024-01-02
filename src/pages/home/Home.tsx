@@ -38,7 +38,7 @@ const Home: FC = () => {
         <TabList
           flexDirection={{ base: 'row', md: 'column' }}
           float={{ md: 'left' }}
-          height={{ md: '100%' }}
+          height='100%'
           zIndex={100}
           background='brand.gray.600'
           position='fixed'
@@ -49,7 +49,7 @@ const Home: FC = () => {
               left: 0,
               right: 0,
               width: '100%',
-              height: '100px',
+              height: '70px',
             },
           }}>
           {tabs.map(({ title, icon, styles }) => (

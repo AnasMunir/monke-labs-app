@@ -6,7 +6,6 @@ const HeartIcon = createIcon({
   path: (
     <path
       fill='currentColor'
-      stroke='currentStroke'
       strokeWidth='1.5'
       strokeLinecap='round'
       strokeLinejoin='round'

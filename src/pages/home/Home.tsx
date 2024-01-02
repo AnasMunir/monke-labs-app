@@ -60,7 +60,7 @@ const Home: FC = () => {
                   as={icon}
                   color={activeTabIndex === tabIndex ? 'brand.primary.700' : 'brand.gray.400'}
                   fill={activeTabIndex === tabIndex ? 'brand.primary.700' : 'brand.gray.400'}
-                  stroke='brand.primary.700'
+                  // stroke='brand.primary.700'
                   width={30}
                   height={29}
                 />

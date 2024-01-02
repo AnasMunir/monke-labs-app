@@ -5,6 +5,7 @@ import CategoryItem from '../../components/category-item/CategoryItem';
 import { SearchIcon } from '../../components/Icon';
 import Section from '../../components/section/Section';
 import { Product } from '..';
+import { products } from '../../context/Product/data';
 
 const OrderNow: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,9 +43,9 @@ const OrderNow: FC = () => {
           width={{ base: '100%', md: '90%' }}
           spacing='20px'
           justifyItems='center'>
-          {[...Array(12)].map((_, index) => (
+          {products.map((product, index) => (
             <Box width={{ base: '172px', md: '200px' }} onClick={onOpen}>
-              <ProductItem key={index} />
+              <ProductItem product={product} key={index} />
             </Box>
           ))}
         </SimpleGrid>

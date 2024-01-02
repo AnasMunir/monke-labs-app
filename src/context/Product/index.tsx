@@ -18,17 +18,17 @@ const ProductProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return <ProductContext.Provider value={[initialState]}>{children}</ProductContext.Provider>;
 };
 
-const useUser = (): [TState] => {
+const useProduct = (): [TState] => {
   const context = useContext(ProductContext);
 
   if (context === undefined) {
-    throw new Error('useUser must be used within a UserProvider');
+    throw new Error('useProduct must be used within a UserProvider');
   }
   return context;
 };
 
 const useProductState = (): TState => {
-  const [state] = useUser();
+  const [state] = useProduct();
 
   return state;
 };

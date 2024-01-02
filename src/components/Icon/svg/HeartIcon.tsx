@@ -5,10 +5,6 @@ const HeartIcon = createIcon({
   viewBox: '0 0 30 29',
   path: (
     <path
-      width={30}
-      height={29}
-      // fill='currentFill'
-      // fill='#A1A1A1
       fill='currentColor'
       stroke='currentStroke'
       strokeWidth='1.5'

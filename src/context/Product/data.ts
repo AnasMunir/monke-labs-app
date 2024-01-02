@@ -3,6 +3,7 @@ import { TProduct } from './types';
 
 export const products: TProduct[] = [
   {
+    id: 1,
     name: 'Grilled Beef Steak with Mushroom sauce',
     description:
       'Indulge in the mouthwatering delight of a perfectly grilled beef steak generously topped with a rich and savory mushroom sauce.',
@@ -12,6 +13,7 @@ export const products: TProduct[] = [
     favorite: true,
   },
   {
+    id: 2,
     name: 'Grilled Beef Steak with Mushroom sauce',
     description:
       'Indulge in the mouthwatering delight of a perfectly grilled beef steak generously topped with a rich and savory mushroom sauce.',
@@ -21,6 +23,7 @@ export const products: TProduct[] = [
     favorite: false,
   },
   {
+    id: 3,
     name: 'Grilled Beef Steak with Mushroom sauce',
     description:
       'Indulge in the mouthwatering delight of a perfectly grilled beef steak generously topped with a rich and savory mushroom sauce.',
@@ -30,6 +33,7 @@ export const products: TProduct[] = [
     favorite: true,
   },
   {
+    id: 4,
     name: 'Grilled Beef Steak with Mushroom sauce',
     description:
       'Indulge in the mouthwatering delight of a perfectly grilled beef steak generously topped with a rich and savory mushroom sauce.',
@@ -39,6 +43,7 @@ export const products: TProduct[] = [
     favorite: true,
   },
   {
+    id: 5,
     name: 'Grilled Beef Steak with Mushroom sauce',
     description:
       'Indulge in the mouthwatering delight of a perfectly grilled beef steak generously topped with a rich and savory mushroom sauce.',

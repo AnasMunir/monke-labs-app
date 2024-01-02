@@ -11,13 +11,30 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { BackArrowIcon, HeartIcon } from '../../components/Icon';
 import ProductOne from '../../assets/product-1.png';
 import Quantity from '../../components/quantity/Quantity';
 import { MobileActionFooter } from '../../components';
+import { TProduct } from '../../context/Product/types';
+import { useProductUpdate } from '../../context/Product';
 
-const Product: FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+interface IProduct {
+  isOpen: boolean;
+  onClose: () => void;
+  product: TProduct;
+}
+
+const Product: FC<IProduct> = ({ isOpen, onClose, product }) => {
+  const { name, description, price, favorite } = product;
+  const [isFavorite, setIsFavorite] = useState(favorite);
+
+  const productUpdate = useProductUpdate();
+  const handleAddToFavorites = () => {
+    setIsFavorite(!favorite);
+    productUpdate && productUpdate({ ...product, favorite: !favorite });
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' size={{ base: 'full', md: 'lg' }}>
       <ModalOverlay />
@@ -27,14 +44,20 @@ const Product: FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose
             <Box onClick={onClose}>
               <BackArrowIcon />
             </Box>
-            <HeartIcon />
+            <HeartIcon
+              width='27px'
+              height='25px'
+              color={isFavorite ? 'brand.primary.500' : 'white'}
+              stroke={isFavorite ? 'brand.primary.500' : 'black'}
+              onClick={handleAddToFavorites}
+            />
           </HStack>
         </ModalHeader>
 
         <ModalBody background='white' borderRadius='0px 0px 50px 50px'>
           <VStack alignItems='start'>
             <Text maxWidth='340px' fontSize='25px' fontWeight={600}>
-              Grilled Beef Steak with Mushroom sauce
+              {name}
             </Text>
             <Text fontSize='18px' fontWeight={400} color='brand.gray.400'>
               By Steak house
@@ -50,15 +73,14 @@ const Product: FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose
                 Description
               </Text>
               <Text fontSize='16px' fontWeight={400} color='brand.gray.400'>
-                Indulge in the mouthwatering delight of a perfectly grilled beef steak generously topped with a rich and
-                savory mushroom sauce.
+                {description}
               </Text>
             </Box>
           </VStack>
         </ModalBody>
 
         <ModalFooter>
-          <MobileActionFooter price={25.27} text='Price' buttonText='Add to cart' onClick={onClose} />
+          <MobileActionFooter price={price} text='Price' buttonText='Add to cart' onClick={onClose} />
         </ModalFooter>
       </ModalContent>
     </Modal>

@@ -1,4 +1,5 @@
 export type TProduct = {
+  id: number;
   name: string;
   description: string;
   image: string;
@@ -7,4 +8,12 @@ export type TProduct = {
   favorite: boolean;
 };
 
+export type TProductState = {
+  products: TProduct[];
+};
+
 export type TCart = TProduct[];
+
+export type TCartState = {
+  cart: TCart;
+};

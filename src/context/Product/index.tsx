@@ -1,24 +1,37 @@
-import { FC, ReactNode, createContext, useContext } from 'react';
-import { TProduct, TCart } from './types';
+import { FC, ReactNode, createContext, useContext, useState } from 'react';
+import { TProduct, TProductState } from './types';
 import { products } from './data';
 
-type TState = {
-  products: TProduct[];
-  cart: TCart;
-};
-
-const initialState: TState = {
+const initialProductState: TProductState = {
   products: products,
-  cart: [],
 };
 
-const ProductContext = createContext<[TState] | undefined>(undefined);
+const ProductContext = createContext<TProductState | undefined>(undefined);
+const UpdateProductContext = createContext<((updatedProduct: TProduct) => void) | null>(null);
 
 const ProductProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  return <ProductContext.Provider value={[initialState]}>{children}</ProductContext.Provider>;
+  const [products, setProducts] = useState(initialProductState);
+
+  const updateProduct = (updatedProduct: TProduct): void => {
+    const { products } = initialProductState;
+
+    const updatedProducts = products.map((product) => {
+      if (product.id !== updatedProduct.id) return product;
+      return {
+        ...product,
+        favorite: updatedProduct.favorite,
+      };
+    });
+    setProducts({ products: updatedProducts });
+  };
+  return (
+    <ProductContext.Provider value={products}>
+      <UpdateProductContext.Provider value={updateProduct}>{children}</UpdateProductContext.Provider>
+    </ProductContext.Provider>
+  );
 };
 
-const useProduct = (): [TState] => {
+const useProductState = (): TProductState => {
   const context = useContext(ProductContext);
 
   if (context === undefined) {
@@ -27,10 +40,8 @@ const useProduct = (): [TState] => {
   return context;
 };
 
-const useProductState = (): TState => {
-  const [state] = useProduct();
-
-  return state;
+const useProductUpdate = () => {
+  return useContext(UpdateProductContext);
 };
 
-export { ProductProvider, useProductState };
+export { ProductProvider, useProductState, useProductUpdate };

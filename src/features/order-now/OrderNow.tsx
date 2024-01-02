@@ -1,14 +1,17 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import ProductItem from '../../components/product-item/ProductItem';
 import { Box, HStack, SimpleGrid, Text, VStack, useDisclosure } from '@chakra-ui/react';
 import CategoryItem from '../../components/category-item/CategoryItem';
 import { SearchIcon } from '../../components/Icon';
 import Section from '../../components/section/Section';
 import { Product } from '..';
-import { products } from '../../context/Product/data';
+import { TProduct } from '../../context/Product/types';
+import { useProductState } from '../../context/Product';
 
 const OrderNow: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { products } = useProductState();
+  const [product, setProduct] = useState<TProduct | null>(null);
   return (
     <>
       <HStack marginBottom='50px' justifyContent={{ base: 'space-between', md: 'start' }}>
@@ -43,14 +46,20 @@ const OrderNow: FC = () => {
           width={{ base: '100%', md: '90%' }}
           spacing='20px'
           justifyItems='center'>
-          {products.map((product, index) => (
-            <Box width={{ base: '172px', md: '200px' }} onClick={onOpen}>
-              <ProductItem product={product} key={index} />
+          {products.map((product) => (
+            <Box
+              key={product.id}
+              width={{ base: '172px', md: '200px' }}
+              onClick={() => {
+                setProduct(product);
+                onOpen();
+              }}>
+              <ProductItem product={product} />
             </Box>
           ))}
         </SimpleGrid>
       </Section>
-      <Product isOpen={isOpen} onClose={onClose} />
+      {product && <Product product={product!} isOpen={isOpen} onClose={onClose} />}
     </>
   );
 };

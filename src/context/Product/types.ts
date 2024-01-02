@@ -6,3 +6,5 @@ export type TProduct = {
   price: number;
   favorite: boolean;
 };
+
+export type TCart = TProduct[];

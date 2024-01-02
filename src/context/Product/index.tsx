@@ -1,13 +1,15 @@
 import { FC, ReactNode, createContext, useContext } from 'react';
-import { TProduct } from './types';
+import { TProduct, TCart } from './types';
 import { products } from './data';
 
 type TState = {
   products: TProduct[];
+  cart: TCart;
 };
 
 const initialState: TState = {
   products: products,
+  cart: [],
 };
 
 const ProductContext = createContext<[TState] | undefined>(undefined);

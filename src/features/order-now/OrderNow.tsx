@@ -59,7 +59,7 @@ const OrderNow: FC = () => {
           ))}
         </SimpleGrid>
       </Section>
-      {product && <Product product={product!} isOpen={isOpen} onClose={onClose} />}
+      {product && <Product product={product} isOpen={isOpen} onClose={onClose} />}
     </>
   );
 };

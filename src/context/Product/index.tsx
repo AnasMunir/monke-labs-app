@@ -13,17 +13,15 @@ const ProductProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState(initialProductState);
 
   const updateProduct = (updatedProduct: TProduct): void => {
-    const { products } = initialProductState;
-
-    const updatedProducts = products.map((product) => {
+    const updatedProducts = products.products.map((product) => {
       if (product.id !== updatedProduct.id) return product;
-      return {
-        ...product,
-        favorite: updatedProduct.favorite,
-      };
+
+      return updatedProduct;
     });
+
     setProducts({ products: updatedProducts });
   };
+
   return (
     <ProductContext.Provider value={products}>
       <UpdateProductContext.Provider value={updateProduct}>{children}</UpdateProductContext.Provider>

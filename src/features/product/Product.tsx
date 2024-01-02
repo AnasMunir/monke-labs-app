@@ -11,7 +11,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { BackArrowIcon, HeartIcon } from '../../components/Icon';
 import ProductOne from '../../assets/product-1.png';
 import Quantity from '../../components/quantity/Quantity';
@@ -26,14 +26,18 @@ interface IProduct {
 }
 
 const Product: FC<IProduct> = ({ isOpen, onClose, product }) => {
-  const { name, description, price, favorite } = product;
-  const [isFavorite, setIsFavorite] = useState(favorite);
+  const { name, description, price } = product;
+  const [isFavorite, setIsFavorite] = useState<boolean>(() => product.favorite);
 
   const productUpdate = useProductUpdate();
-  const handleAddToFavorites = () => {
-    setIsFavorite(!favorite);
-    productUpdate && productUpdate({ ...product, favorite: !favorite });
+  const handleAddToFavorites = (value: boolean) => {
+    setIsFavorite((current) => !current);
+    productUpdate && productUpdate({ ...product, favorite: !value });
   };
+
+  useEffect(() => {
+    setIsFavorite(product.favorite);
+  }, [product]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' size={{ base: 'full', md: 'lg' }}>
@@ -49,7 +53,7 @@ const Product: FC<IProduct> = ({ isOpen, onClose, product }) => {
               height='25px'
               color={isFavorite ? 'brand.primary.500' : 'white'}
               stroke={isFavorite ? 'brand.primary.500' : 'black'}
-              onClick={handleAddToFavorites}
+              onClick={() => handleAddToFavorites(isFavorite!)}
             />
           </HStack>
         </ModalHeader>

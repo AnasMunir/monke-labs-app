@@ -17,6 +17,7 @@ export const foundations = {
         400: '#A1A1A1',
         500: '#686868',
         600: '#F0F4FC',
+        700: '#E2E8F0',
       },
       red: {
         500: '#F40000',

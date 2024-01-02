@@ -20,7 +20,7 @@ const ProductItem: FC = () => {
           </Text>
           <HStack justifyContent='space-between'>
             <Price price={450} fontSize='14px' fontWeight={500} />
-            <HeartIcon width='16px' height='15px' color='black' />
+            <HeartIcon width='16px' height='15px' fill='white' stroke='black' />
           </HStack>
         </Stack>
       </CardBody>

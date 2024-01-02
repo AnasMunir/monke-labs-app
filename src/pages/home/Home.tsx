@@ -1,5 +1,5 @@
 import { Box, Icon, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { HomeIcon, HeartIcon, CartIcon, ChartIcon, ProfileIcon } from '../../components/Icon';
 import { Cart, OrderNow } from '../../features';
 
@@ -32,9 +32,10 @@ const tabs = [
 ];
 
 const Home: FC = () => {
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
   return (
     <Box height={{ base: '100%', md: '100vh' }}>
-      <Tabs isFitted variant='primary' height='100%' width='100%'>
+      <Tabs isFitted variant='primary' height='100%' width='100%' onChange={(index) => setActiveTabIndex(index)}>
         <TabList
           flexDirection={{ base: 'row', md: 'column' }}
           float={{ md: 'left' }}
@@ -52,10 +53,17 @@ const Home: FC = () => {
               height: '70px',
             },
           }}>
-          {tabs.map(({ title, icon, styles }) => (
+          {tabs.map(({ title, icon, styles }, tabIndex) => (
             <Tab key={title} sx={tabStyle}>
               <Box sx={{ ...styles }}>
-                <Icon as={icon} />
+                <Icon
+                  as={icon}
+                  color={activeTabIndex === tabIndex ? 'brand.primary.700' : 'brand.gray.400'}
+                  fill={activeTabIndex === tabIndex ? 'brand.primary.700' : 'brand.gray.400'}
+                  stroke='brand.primary.700'
+                  width={30}
+                  height={29}
+                />
               </Box>
             </Tab>
           ))}
